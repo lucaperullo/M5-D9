@@ -1,0 +1,37 @@
+{
+  "name": "M5-D9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaperullo/M5-D9.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaperullo/M5-D9/issues"
+  },
+  "homepage": "https://github.com/lucaperullo/M5-D9#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^5.0.0",
+    "express-validator": "^6.10.0",
+    "fs-extra": "^9.1.0",
+    "multer": "^1.4.2",
+    "swagger-ui-express": "^4.1.6",
+    "uuid": "^8.3.2",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

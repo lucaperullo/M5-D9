@@ -1,0 +1,90 @@
+openapi: 3.0.0
+servers:
+  - description: Strivazon API
+    url: url
+info:
+  description: This apis will provide you a store like apis where you can post edit and delete your products!
+  version: "1.0.0"
+  title: Strivazon API
+  contact:
+    email: lucaperullo@outlook.it
+
+tags:
+  - name: CRUD
+    description: A list of our endpoints
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /product:
+    get:
+      tags:
+        - CRUD
+      summary: retrive a list of products
+      operationId: searchInventory
+      description: |
+        In here you can get a list of our products, retrive a filtered list by name or category or just the single product.
+      parameters:
+        - in: path
+          name: ID
+          description: pass an optional search id for looking up in the Database. You can access it through -/product/:id
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Our products as in JSON format
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InventoryItem"
+        "400":
+          description: bad input parameter
+    post:
+      tags:
+        - CRUD
+      summary: adds a product to the database
+      operationId: addProduct
+      description: Adds a product to the system
+      responses:
+        "201":
+          description: product created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/newProduct"
+        description: Inventory item to add
+components:
+  schemas:
+    newProduct:
+      type: object
+      required:
+        - id (server generated)
+        - name
+        - price
+        - brand
+        - releaseDate (server generated)
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        name:
+          type: string
+          example: Widget Adapter
+        price:
+          type: integer
+          example: 22.99
+
+        brand:
+          $ref: "#/components/schemas/brand"
+    brand:
+      type: string
+      example: Sony
